@@ -1,4 +1,4 @@
-package io.unreal.web3authenticator.httpclient.ethereum.infura.objects
+package io.unreal.web3authenticator.commons
 
 data class InfuraPostBody(
     val JsonRPC: String,

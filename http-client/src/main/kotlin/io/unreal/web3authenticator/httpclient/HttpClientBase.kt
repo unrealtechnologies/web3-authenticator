@@ -16,6 +16,6 @@ open class HttpClientBase {
     fun post(body: Any) {
         val req = this.request()
         req.addHeader("Content-Type", "application/json")
-        req.post(body)
+//        req.post(body)
     }
 }
