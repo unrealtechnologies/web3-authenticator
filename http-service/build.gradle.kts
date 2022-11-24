@@ -20,6 +20,7 @@ dependencies {
     implementation("org.web3j:core:5.0.0")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
     implementation(project(":http-client")) //project specific libraries
+    implementation(project(":commons")) //project specific libraries
 
 }
 

@@ -6,6 +6,6 @@ pluginManagement {
 	}
 }
 rootProject.name = "web3-authenticator"
-include("common")
+include("commons")
 include("http-client")
 include("http-service")

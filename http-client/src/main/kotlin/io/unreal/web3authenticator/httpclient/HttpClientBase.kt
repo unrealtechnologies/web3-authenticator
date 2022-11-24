@@ -1,21 +1,32 @@
 package io.unreal.web3authenticator.httpclient
 
+import okhttp3.FormBody
 import okhttp3.Request
+import kotlin.reflect.typeOf
 
-open class HttpClientBase {
-    private val client = HttpClient
+open class HttpClientBase(val baseUrl: String): HttpClientInterface {
+    private val client = HttpClientSingleton.httpClient
+
 
     fun request(): Request.Builder {
         return Request.Builder()
+            .url(baseUrl)
     }
 
-    fun get() {
-        client.httpClient
+    override fun getRequest() {
+//        client
     }
 
-    fun post(body: Any) {
+    override fun postRequest(body: Any) {
         val req = this.request()
         req.addHeader("Content-Type", "application/json")
-//        req.post(body)
+    }
+
+    fun postForm(body: FormBody) {
+        val req = this.request().post(body).build()
+    }
+
+    fun internalCall(req: Request) {
+        val call = client.newCall(req)
     }
 }
