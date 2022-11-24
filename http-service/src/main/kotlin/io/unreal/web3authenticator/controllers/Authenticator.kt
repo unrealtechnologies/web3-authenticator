@@ -1,10 +1,14 @@
 package io.unreal.web3authenticator.controllers
 
+import io.unreal.web3authenticator.commons.CommonsObject
+import io.unreal.web3authenticator.commons.JsonSerializer
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RestController
 
 import io.unreal.web3authenticator.httpclient.Test
 import io.unreal.web3authenticator.commons.objects.InfuraRequestBody
+import io.unreal.web3authenticator.commons.objects.Person
+
 
 @RestController
 class Authenticator {
@@ -12,13 +16,14 @@ class Authenticator {
     @GetMapping("/authenticate")
     fun authenticate(): String {
 
-        val obj = InfuraRequestBody(
-            jsonRpc = "rpc2.0",
-            method = "letsdoit"
+        val jsonSerializer = JsonSerializer()
+
+        val person = Person(
+            firstName = "Ariel",
+            lastName = "Saldana"
         )
 
-        return obj.encodeToJsonString()
-//        val test = Test()
-//        return test.log()
+        person.serialize<Person>()
+        return person.serialize<Person>()
     }
 }
