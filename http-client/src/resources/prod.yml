@@ -1,0 +1,7 @@
+infura:
+    apiKey: f4a33b53695443739067c53f6b89a5e2
+    ethRESTEndpoint: https://mainnet.infura.io/v3/f4a33b53695443739067c53f6b89a5e2
+    ethWSEndpount: https://mainnet.infura.io/v3/f4a33b53695443739067c53f6b89a5e2
+
+eth:
+    net: https://mainnet.infura.io/v3/f4a33b53695443739067c53f6b89a5e2

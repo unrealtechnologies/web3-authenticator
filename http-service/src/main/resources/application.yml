@@ -1,0 +1,6 @@
+environment: local
+
+httpClients:
+    infuraHttpClient:
+        baseUrl: ""
+        apikey: ""
