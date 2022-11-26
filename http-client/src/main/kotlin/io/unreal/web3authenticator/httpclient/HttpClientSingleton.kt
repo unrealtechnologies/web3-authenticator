@@ -6,6 +6,5 @@ import okhttp3.Response
 
 object HttpClientSingleton {
     val httpClient = OkHttpClient()
-    
     fun execute(request: Request): Response = httpClient.newCall(request).execute()
 }

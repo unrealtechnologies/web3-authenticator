@@ -1,9 +1,22 @@
 package io.unreal.web3authenticator.commons.objects
 
-import kotlinx.serialization.Serializable
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
+import com.fasterxml.jackson.annotation.JsonProperty
+import io.unreal.web3authenticator.commons.CommonsObject
 
-@Serializable
+@JsonIgnoreProperties
 data class InfuraRequestBody(
-    val jsonRpc: String,
+
+    @JsonProperty("id")
+    val id: Int,
+
+    @JsonProperty("jsonrpc")
+    val jsonRPC: String,
+
+    @JsonProperty("method")
     val method: String,
-)
+
+    @JsonProperty("params")
+    val params: List<Any>?
+
+): CommonsObject()
