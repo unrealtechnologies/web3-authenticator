@@ -1,7 +1,7 @@
 package io.unreal.web3authenticator.httpclient.ethereum.infura
 
 class BlockApi(infuraClientApiKey: String): InfuraHttpClient(infuraClientApiKey = infuraClientApiKey) {
-    fun getBlockByHash(blockHash: String, showTransactionDetails: Boolean) {
+    fun getBlockByHash(blockHash: String, showTransactionDetails: Boolean): String {
         val body = requestBuilder.build(
             method = InfuraMethods.GETBLOCKHASH,
             params = listOf(blockHash, showTransactionDetails)
@@ -12,6 +12,7 @@ class BlockApi(infuraClientApiKey: String): InfuraHttpClient(infuraClientApiKey 
             body = body
         )
 
-        retrieveResponse(req)
+        val res = retrieveResponse(req)
+        return res.body!!.string()
     }
 }
