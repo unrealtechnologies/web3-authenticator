@@ -1,9 +1,6 @@
 package io.unreal.web3authenticator.httpclient.ethereum.infura
 
 class InfuraApi(val infuraClientApiKey: String)  {
-//    init {
-//        infuraApiSettings.rpc = ""
-//    }
-
+    val settings = InfuraApiSettings
     val blockApi: BlockApi = BlockApi(infuraClientApiKey)
 }
