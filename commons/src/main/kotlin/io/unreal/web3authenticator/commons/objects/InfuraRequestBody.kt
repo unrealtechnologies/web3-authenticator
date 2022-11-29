@@ -8,7 +8,7 @@ import io.unreal.web3authenticator.commons.CommonsObject
 data class InfuraRequestBody(
 
     @JsonProperty("id")
-    val id: Int,
+    val id: String,
 
     @JsonProperty("jsonrpc")
     val jsonRPC: String,

@@ -8,9 +8,9 @@ import okhttp3.RequestBody.Companion.toRequestBody
 class InfuraRequestBuilder(val jsonRPC: String, val id: Int) {
     fun build(method: InfuraMethods, params: List<Any>): RequestBody {
         val requestBody = InfuraRequestBody(
-            id = id,
+            id = method.methodPair.second,
             jsonRPC = jsonRPC,
-            method = method.methodName,
+            method = method.methodPair.first,
             params = params
         )
 
