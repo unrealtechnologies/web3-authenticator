@@ -9,11 +9,6 @@ import io.unreal.web3authenticator.commons.CommonsObject
 import io.unreal.web3authenticator.serializers.InfuraResponseDeserializer
 
 @JsonIgnoreProperties
-//@JsonTypeInfo(use= JsonTypeInfo.Id.NAME, include=JsonTypeInfo.As.PROPERTY, property="id")
-//@JsonSubTypes(
-//    JsonSubTypes.Type(value = BlockInformation::class, name = "1"),
-//    JsonSubTypes.Type(value = BlockHash::class, name = "2")
-//)
 @JsonDeserialize(using = InfuraResponseDeserializer::class)
 data class InfuraResponseBody(
 
@@ -25,7 +20,4 @@ data class InfuraResponseBody(
 
     @JsonProperty("result")
     val result: InfuraResult
-//    val result: InfuraResult<BlockInformation>?
-): CommonsObject() {
-    constructor(): this("1", "nil", BlockHash("nil"))
-}
+): CommonsObject()
