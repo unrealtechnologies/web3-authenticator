@@ -1,6 +1,5 @@
 package io.unreal.web3authenticator.services
 
-import io.unreal.web3authenticator.commons.objects.BlockInformation
 import io.unreal.web3authenticator.commons.objects.InfuraResponseBody
 import io.unreal.web3authenticator.httpclient.ethereum.infura.InfuraApi
 import org.springframework.stereotype.Service
