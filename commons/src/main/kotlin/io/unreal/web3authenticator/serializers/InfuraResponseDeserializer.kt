@@ -7,7 +7,6 @@ import com.fasterxml.jackson.databind.deser.std.StdDeserializer
 import com.fasterxml.jackson.databind.node.ObjectNode
 import io.unreal.web3authenticator.commons.objects.InfuraResponseBody
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import io.unreal.web3authenticator.commons.objects.BlockInformation
 import io.unreal.web3authenticator.httpclient.ethereum.infura.InfuraMethods
 import kotlin.reflect.*
 import kotlin.reflect.full.primaryConstructor
