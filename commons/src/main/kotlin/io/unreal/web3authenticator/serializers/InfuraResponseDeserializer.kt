@@ -41,14 +41,12 @@ class InfuraResponseDeserializer: StdDeserializer<InfuraResponseBody>(InfuraResp
         for (param : KParameter in constructor.parameters) {
             val property = properties.stream()
                 .filter { item -> item.internalName.equals(param.name) }.findFirst()
-            require(property.isPresent)
 
+            require(property.isPresent)
             val jsonName = property.get().fullName.toString()
-            val internalName = property.get().internalName.toString()
 
             if (!tree.has(jsonName)) {
                 if (param.isOptional) {
-                    println("Skipping for param.name: $internalName")
                     continue
                 }
                 throw RuntimeException("Missing required field: ${param.name}")
@@ -63,7 +61,6 @@ class InfuraResponseDeserializer: StdDeserializer<InfuraResponseBody>(InfuraResp
             var javatype = getJavaType(ctxt, param, tree.get("id").textValue(), jsonName)
             val reader = jacksonObjectMapper().readerFor(javatype)
             val obj = reader.readValue<Any?>(node)
-            println("$internalName ${param.type} $javaType")
 
             args[param] = obj
         }

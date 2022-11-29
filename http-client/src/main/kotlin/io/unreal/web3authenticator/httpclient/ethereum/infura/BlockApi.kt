@@ -1,11 +1,7 @@
 package io.unreal.web3authenticator.httpclient.ethereum.infura
 
 import io.unreal.web3authenticator.commons.CommonsObject
-import io.unreal.web3authenticator.commons.objects.BlockHash
-import io.unreal.web3authenticator.commons.objects.BlockInformation
 import io.unreal.web3authenticator.commons.objects.InfuraResponseBody
-import io.unreal.web3authenticator.commons.objects.InfuraResult
-import kotlin.reflect.typeOf
 
 class BlockApi(infuraClientApiKey: String): InfuraHttpClient(infuraClientApiKey = infuraClientApiKey) {
     fun getBlockByHash(blockHash: String, showTransactionDetails: Boolean): InfuraResponseBody {
@@ -20,16 +16,21 @@ class BlockApi(infuraClientApiKey: String): InfuraHttpClient(infuraClientApiKey 
         )
 
         val res = retrieveResponse(req)
+        return CommonsObject.jacksonDeserializeFromJsonString<InfuraResponseBody>(res.body!!.string())
+    }
 
-        val infuraResponse = CommonsObject.jacksonDeserializeFromJsonString<InfuraResponseBody>(res.body!!.string())
+    fun getLatestBlock(): InfuraResponseBody {
+        val body = requestBuilder.build(
+            method = InfuraMethods.GETLATESTBLOCKNUMBER,
+            params = listOf()
+        )
 
-//        println(infuraResponse.result is BlockApi)
-        println(infuraResponse.result is InfuraResult)
-        println(infuraResponse.result is BlockHash)
-        println(infuraResponse.result is BlockInformation)
+        val req = requestBuilder(
+            url = getUrl(),
+            body = body
+        )
 
-//        println(CommonsObject.jacksonDeserializeFromJsonString<InfuraResponseBody>(res.body!!.string()))
-
-        return infuraResponse
+        val res = retrieveResponse(req)
+        return CommonsObject.jacksonDeserializeFromJsonString<InfuraResponseBody>(res.body!!.string())
     }
 }

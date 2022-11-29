@@ -5,16 +5,17 @@ import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RestController
 import io.unreal.web3authenticator.services.AuthenticatorService
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.web.bind.annotation.RequestMapping
 
 @RestController
-class Authenticator {
+@RequestMapping("/block")
+class BlockController {
 
     @Autowired
     val authenticatorService = AuthenticatorService()
 
-    @GetMapping("/authenticate")
+    @GetMapping("/latest")
     fun authenticate(): InfuraResponseBody {
-        val block = authenticatorService.getBlockByHash().result
-        return authenticatorService.getBlockByHash()
+        return authenticatorService.getLatestBlockHash()
     }
 }
