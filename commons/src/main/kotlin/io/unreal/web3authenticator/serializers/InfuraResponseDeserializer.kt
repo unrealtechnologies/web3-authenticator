@@ -7,7 +7,7 @@ import com.fasterxml.jackson.databind.deser.std.StdDeserializer
 import com.fasterxml.jackson.databind.node.ObjectNode
 import io.unreal.web3authenticator.commons.objects.InfuraResponseBody
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import io.unreal.web3authenticator.httpclient.ethereum.infura.InfuraMethods
+import io.unreal.web3authenticator.commons.objects.InfuraMethods
 import kotlin.reflect.*
 import kotlin.reflect.full.primaryConstructor
 
@@ -15,13 +15,15 @@ class InfuraResponseDeserializer: StdDeserializer<InfuraResponseBody>(InfuraResp
 
     @OptIn(ExperimentalStdlibApi::class)
     fun getJavaType(ctxt: DeserializationContext, param: KParameter, id: String, jsonKey: String): JavaType {
-        when {
-            jsonKey == "result" -> {
+        return when (jsonKey) {
+            "result" -> {
                 val clazz = InfuraMethods.getWithId(id).methodPair.third
                 val constructor = clazz.primaryConstructor!!
-                return ctxt.typeFactory.constructType(constructor.returnType.javaType)
+                ctxt.typeFactory.constructType(constructor.returnType.javaType)
             }
-            else -> return ctxt.typeFactory.constructType(param.type.javaType)
+            else -> {
+                ctxt.typeFactory.constructType(param.type.javaType)
+            }
         }
     }
 
@@ -58,7 +60,7 @@ class InfuraResponseDeserializer: StdDeserializer<InfuraResponseBody>(InfuraResp
                 throw RuntimeException("Got null value for non-nullable field: ${param.name}")
             }
 
-            var javatype = getJavaType(ctxt, param, tree.get("id").textValue(), jsonName)
+            val javatype = getJavaType(ctxt, param, tree.get("id").textValue(), jsonName)
             val reader = jacksonObjectMapper().readerFor(javatype)
             val obj = reader.readValue<Any?>(node)
 

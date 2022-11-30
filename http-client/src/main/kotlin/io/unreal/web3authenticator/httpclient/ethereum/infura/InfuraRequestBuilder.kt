@@ -1,6 +1,7 @@
 package io.unreal.web3authenticator.httpclient.ethereum.infura
 
 import io.unreal.web3authenticator.commons.objects.InfuraRequestBody
+import io.unreal.web3authenticator.commons.objects.InfuraMethods
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.toRequestBody

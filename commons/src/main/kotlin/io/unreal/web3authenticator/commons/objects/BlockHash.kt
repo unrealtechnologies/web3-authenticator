@@ -7,7 +7,7 @@ data class BlockHash(private val value: String): InfuraResult() {
     companion object {
         @JvmStatic
         @JsonCreator
-        fun create(value: String) = BlockHash(value.toLowerCase())
+        fun create(value: String) = BlockHash(value.lowercase())
     }
 
     @JsonValue

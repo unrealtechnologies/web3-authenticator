@@ -1,7 +1,6 @@
-package io.unreal.web3authenticator.httpclient.ethereum.infura
+package io.unreal.web3authenticator.commons.objects
 
 import io.unreal.web3authenticator.commons.objects.BlockHash
-import io.unreal.web3authenticator.commons.objects.BlockInformation
 import kotlin.reflect.KClass
 
 // Using a tripple here to represent function name, ID, and class

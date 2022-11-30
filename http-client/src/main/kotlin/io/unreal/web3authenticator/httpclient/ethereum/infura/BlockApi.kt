@@ -2,6 +2,7 @@ package io.unreal.web3authenticator.httpclient.ethereum.infura
 
 import io.unreal.web3authenticator.commons.CommonsObject
 import io.unreal.web3authenticator.commons.objects.InfuraResponseBody
+import io.unreal.web3authenticator.commons.objects.InfuraMethods
 
 class BlockApi(infuraClientApiKey: String): InfuraHttpClient(infuraClientApiKey = infuraClientApiKey) {
     fun getBlockByHash(blockHash: String, showTransactionDetails: Boolean): InfuraResponseBody {

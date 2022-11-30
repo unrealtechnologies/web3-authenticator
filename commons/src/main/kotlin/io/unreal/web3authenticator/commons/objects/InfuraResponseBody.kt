@@ -2,8 +2,6 @@ package io.unreal.web3authenticator.commons.objects
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.fasterxml.jackson.annotation.JsonSubTypes
-import com.fasterxml.jackson.annotation.JsonTypeInfo
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import io.unreal.web3authenticator.commons.CommonsObject
 import io.unreal.web3authenticator.serializers.InfuraResponseDeserializer
