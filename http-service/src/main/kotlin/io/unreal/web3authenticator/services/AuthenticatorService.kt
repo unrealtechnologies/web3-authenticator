@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service
 @Service
 class AuthenticatorService {
     val infuraApi = InfuraApi("")
+
     fun getBlockByHash(hash: String): InfuraResponseBody {
         return infuraApi.blockApi.getBlockByHash(hash, false)
     }
