@@ -14,7 +14,6 @@ class Authenticator {
 
     @GetMapping("/authenticate")
     fun authenticate(): InfuraResponseBody {
-        val block = authenticatorService.getBlockByHash().result
-        return authenticatorService.getBlockByHash()
+        return authenticatorService.getBlockByHash("")
     }
 }
