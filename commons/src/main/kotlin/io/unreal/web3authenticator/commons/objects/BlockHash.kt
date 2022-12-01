@@ -1,8 +1,10 @@
 package io.unreal.web3authenticator.commons.objects
 
 import com.fasterxml.jackson.annotation.JsonCreator
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonValue
 
+@JsonIgnoreProperties(ignoreUnknown=true)
 data class BlockHash(private val value: String): InfuraResult() {
     companion object {
         @JvmStatic
