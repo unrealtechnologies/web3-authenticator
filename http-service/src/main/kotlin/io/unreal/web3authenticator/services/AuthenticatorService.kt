@@ -15,6 +15,10 @@ class AuthenticatorService {
         return infuraApi.blockApi.getLatestBlock()
     }
 
+    fun getBlockByBlockNumber(blockNumber: String): InfuraResponseBody {
+        return infuraApi.blockApi.getBlockInformationWithBlockBumber(blockNumber, false)
+    }
+
     fun verifyBlockHash(): Boolean {
         return false
     }

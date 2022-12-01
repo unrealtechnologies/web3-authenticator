@@ -34,4 +34,19 @@ class BlockApi(infuraClientApiKey: String): InfuraHttpClient(infuraClientApiKey 
         val res = retrieveResponse(req)
         return CommonsObject.jacksonDeserializeFromJsonString<InfuraResponseBody>(res.body!!.string())
     }
+
+    fun getBlockInformationWithBlockBumber(blockNumber: String, showTransactionDetails: Boolean): InfuraResponseBody {
+        val body = requestBuilder.build(
+            method = InfuraMethods.GETBLOCKINFORMATIONBYNUMBER,
+            params = listOf(blockNumber, showTransactionDetails)
+        )
+
+        val req = requestBuilder(
+            url = getUrl(),
+            body = body
+        )
+
+        val res = retrieveResponse(req)
+        return CommonsObject.jacksonDeserializeFromJsonString<InfuraResponseBody>(res.body!!.string())
+    }
 }

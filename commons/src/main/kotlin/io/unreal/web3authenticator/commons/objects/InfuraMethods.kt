@@ -7,7 +7,8 @@ import kotlin.reflect.KClass
 // But perhaps we should use a new data class to hold these values.
 enum class InfuraMethods(val methodPair: Triple<String, String, KClass<*>>) {
     GETBLOCKHASH(Triple("eth_getBlockByHash", "1", BlockInformation::class)),
-    GETLATESTBLOCKNUMBER(Triple("eth_blockNumber", "2", BlockHash::class));
+    GETLATESTBLOCKNUMBER(Triple("eth_blockNumber", "2", BlockHash::class)),
+    GETBLOCKINFORMATIONBYNUMBER(Triple("eth_getBlockByNumber", "3", BlockInformation::class));
 
     companion object {
         private val map = InfuraMethods.values().associateBy { it.methodPair.second }
