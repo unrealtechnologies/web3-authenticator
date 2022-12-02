@@ -11,10 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 
 @RestController
 @RequestMapping("/block")
-class BlockController {
-
-    @Autowired
-    val authenticatorService = AuthenticatorService()
+class BlockController(@Autowired val authenticatorService: AuthenticatorService) {
 
     @GetMapping("/latest")
     fun getLatestBlockNumber(): BlockObject {

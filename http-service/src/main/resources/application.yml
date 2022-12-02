@@ -1,6 +1,20 @@
+spring:
+    config:
+        activate:
+            on-profile: local
 environment: local
-
 httpClients:
-    infuraHttpClient:
-        baseUrl: ""
-        apikey: ""
+    infura:
+        baseUrl: "https://mainnet.infura.io"
+        apikey: "${infuraAPIKey}"
+
+---
+spring:
+    config:
+        activate:
+            on-profile: test
+environment: prod
+httpClients:
+    infura:
+        baseUrl: "https://mainnet.infura.io"
+        apikey: "${infuraAPIKey}"
