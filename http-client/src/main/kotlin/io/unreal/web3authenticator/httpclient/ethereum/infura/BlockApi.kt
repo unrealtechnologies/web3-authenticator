@@ -4,7 +4,10 @@ import io.unreal.web3authenticator.commons.CommonsObject
 import io.unreal.web3authenticator.commons.objects.InfuraResponseBody
 import io.unreal.web3authenticator.commons.objects.InfuraMethods
 
-class BlockApi(infuraClientApiKey: String): InfuraHttpClient(infuraClientApiKey = infuraClientApiKey) {
+class BlockApi(infuraClientApiKey: String, baseUrl: String): InfuraHttpClient(
+    infuraClientApiKey = infuraClientApiKey,
+    baseUrl = baseUrl
+) {
     fun getBlockByHash(blockHash: String, showTransactionDetails: Boolean): InfuraResponseBody {
         val body = requestBuilder.build(
             method = InfuraMethods.GETBLOCKHASH,

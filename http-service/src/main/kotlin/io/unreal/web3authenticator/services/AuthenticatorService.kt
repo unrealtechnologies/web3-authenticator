@@ -10,8 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
 @Service
-class AuthenticatorService(@Autowired var ymlConfig: YMLConfig) {
-    val infuraApi = InfuraApi(ymlConfig.httpClients["infura"]!!.apiKey)
+class AuthenticatorService(@Autowired val ymlConfig: YMLConfig) {
+
+    val infuraApi = InfuraApi(
+        baseUrl = ymlConfig.httpClients["infura"]!!.baseUrl,
+        infuraClientApiKey = ymlConfig.httpClients["infura"]!!.apiKey
+    )
 
     fun getBlockByHash(hash: String): InfuraResponseBody {
         return infuraApi.blockApi.getBlockByHash(hash, false)
