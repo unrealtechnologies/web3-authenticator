@@ -1,5 +1,6 @@
 package io.unreal.web3authenticator.httpclient
 
+import io.unreal.web3authenticator.commons.errors.HttpRequestFailedException
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody
@@ -42,7 +43,12 @@ interface HttpClientInterface {
         return req.build()
     }
 
+    @Throws(HttpRequestFailedException::class)
     fun retrieveResponse(req: Request): Response {
+        val res = client.newCall(req).execute()
+        require(res.isSuccessful) {
+            throw HttpRequestFailedException("Request was not made successfully downstream service returned ${res.code}")
+        }
         return client.newCall(req).execute()
     }
 }

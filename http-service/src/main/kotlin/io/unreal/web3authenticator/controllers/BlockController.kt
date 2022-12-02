@@ -1,6 +1,7 @@
 package io.unreal.web3authenticator.controllers
 
 import io.unreal.web3authenticator.ResponseHandler
+import io.unreal.web3authenticator.commons.errors.HttpRequestFailedException
 import io.unreal.web3authenticator.commons.objects.InfuraResponseBody
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RestController
@@ -17,10 +18,15 @@ class BlockController(@Autowired val authenticatorService: AuthenticatorService)
 
     @GetMapping("/latest")
     fun getLatestBlockNumber(): ResponseEntity<Any> {
-        return ResponseHandler.reply(
-            payload = authenticatorService.getLatestBlockHashAndBlockNumber(),
-            status = HttpStatus.OK
-        )
+        return try {
+            return ResponseHandler.reply(
+                payload = authenticatorService.getLatestBlockHashAndBlockNumber(),
+                status = HttpStatus.OK
+            )
+        } catch(e: HttpRequestFailedException) {
+            e.printStackTrace()
+            ResponseHandler.error(errorMessage = e.message!!, status = HttpStatus.INTERNAL_SERVER_ERROR)
+        }
     }
 
     @GetMapping("/{blockNumber}")

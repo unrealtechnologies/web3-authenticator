@@ -38,7 +38,7 @@ class BlockApi(infuraClientApiKey: String, baseUrl: String): InfuraHttpClient(
         return CommonsObject.jacksonDeserializeFromJsonString<InfuraResponseBody>(res.body!!.string())
     }
 
-    fun getBlockInformationWithBlockBumber(blockNumber: String, showTransactionDetails: Boolean): InfuraResponseBody {
+    fun getBlockInformationWithBlockNumber(blockNumber: String, showTransactionDetails: Boolean): InfuraResponseBody {
         val body = requestBuilder.build(
             method = InfuraMethods.GETBLOCKINFORMATIONBYNUMBER,
             params = listOf(blockNumber, showTransactionDetails)
