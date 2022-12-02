@@ -26,7 +26,7 @@ class AuthenticatorService(@Autowired val ymlConfig: YMLConfig) {
     }
 
     fun getBlockByBlockNumber(blockNumber: String): InfuraResponseBody {
-        return infuraApi.blockApi.getBlockInformationWithBlockBumber(blockNumber, false)
+        return infuraApi.blockApi.getBlockInformationWithBlockNumber(blockNumber, false)
     }
 
     fun getLatestBlockHashAndBlockNumber(): BlockObject {
