@@ -9,8 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired
 @RestController
 class Authenticator(@Autowired val authenticatorService: AuthenticatorService) {
     @GetMapping("/authenticate")
-    fun authenticate(): InfuraResponseBody {
-        return authenticatorService.getBlockByHash("")
+    fun authenticate(blockHash: String): InfuraResponseBody {
+        return authenticatorService.getBlockByHash(blockHash)
     }
 
 }
