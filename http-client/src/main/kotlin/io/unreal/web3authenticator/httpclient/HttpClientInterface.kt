@@ -1,19 +1,23 @@
 package io.unreal.web3authenticator.httpclient
 
+import io.unreal.web3authenticator.commons.CommonsObject
 import io.unreal.web3authenticator.commons.errors.HttpRequestFailedException
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import okhttp3.Response
 
-interface HttpClientInterface {
-    val client: OkHttpClient
-    val baseUrl: String
-
-    fun getUrl(): String {
-        return ""
+abstract class HttpClientInterface(open val baseUrl: String) {
+    companion object {
+        val httpClient = OkHttpClient()
     }
-    fun getUrl(endpoint: String): String {
+
+    open fun getUrl(): String {
+        return baseUrl
+    }
+    open fun getUrl(endpoint: String): String {
         return baseUrl + endpoint
     }
     fun getRequest(endpoint: String): Response {
@@ -27,10 +31,15 @@ interface HttpClientInterface {
 
     fun postRequest(endpoint: String, body: RequestBody): Response {
         val req = requestBuilder(
-            url = getUrl(endpoint),
+            url = endpoint,
             body = body
         )
         return retrieveResponse(req)
+    }
+
+    fun postRequest(endpoint: String, body: CommonsObject): Response {
+        val jsonStringBody = body.jacksonSerializeToJsonString().toRequestBody("application/json".toMediaTypeOrNull())
+        return postRequest(endpoint, jsonStringBody)
     }
 
     fun requestBuilder(url: String, body: RequestBody?): Request {
@@ -45,10 +54,10 @@ interface HttpClientInterface {
 
     @Throws(HttpRequestFailedException::class)
     fun retrieveResponse(req: Request): Response {
-        val res = client.newCall(req).execute()
+        val res = httpClient.newCall(req).execute()
         require(res.isSuccessful) {
             throw HttpRequestFailedException("Request was not made successfully downstream service returned ${res.code}")
         }
-        return client.newCall(req).execute()
+        return httpClient.newCall(req).execute()
     }
 }
