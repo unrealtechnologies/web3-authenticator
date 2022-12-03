@@ -22,5 +22,4 @@ open class ResponseHandler {
             return ResponseEntity(failedResponseObject, status)
         }
     }
-
 }

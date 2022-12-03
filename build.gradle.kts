@@ -15,20 +15,25 @@ allprojects {
         mavenCentral()
         maven { url = uri("https://repo.spring.io/milestone") }
         maven { url = uri("https://repo.spring.io/snapshot") }
+        maven { url = uri("https://oss.sonatype.org/content/repositories/snapshots") }
     }
+
+    dependencies {
+        implementation("com.pinterest:ktlint:0.47.1")
+        // implementation("com.pinterest:ktlint:<latest-version>-kotlin-dev-SNAPSHOT")
+    }
+
 }
 
 subprojects {
+    apply(from = "$rootDir/ktlint.gradle")
+
     tasks.withType<KotlinCompile> {
         kotlinOptions {
             freeCompilerArgs = listOf("-Xjsr305=strict")
             jvmTarget = "17"
         }
     }
-
-//    dependencies {
-//        implementation(project(":commons")) //project specific libraries
-//    }
 }
 
 java.sourceCompatibility = JavaVersion.VERSION_17

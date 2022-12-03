@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonProperty
 import io.unreal.web3authenticator.commons.CommonsObject
 
-@JsonIgnoreProperties(ignoreUnknown=true)
+@JsonIgnoreProperties(ignoreUnknown = true)
 data class InfuraRequestBody(
 
     @JsonProperty("id")
@@ -19,4 +19,4 @@ data class InfuraRequestBody(
     @JsonProperty("params")
     val params: List<Any>?
 
-): CommonsObject()
+) : CommonsObject()
