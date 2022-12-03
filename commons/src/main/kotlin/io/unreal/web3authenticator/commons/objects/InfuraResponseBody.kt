@@ -6,7 +6,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import io.unreal.web3authenticator.commons.CommonsObject
 import io.unreal.web3authenticator.serializers.InfuraResponseDeserializer
 
-@JsonIgnoreProperties(ignoreUnknown=true)
+@JsonIgnoreProperties(ignoreUnknown = true)
 @JsonDeserialize(using = InfuraResponseDeserializer::class)
 data class InfuraResponseBody(
 
@@ -18,4 +18,4 @@ data class InfuraResponseBody(
 
     @JsonProperty("result")
     val result: InfuraResult
-): CommonsObject()
+) : CommonsObject()

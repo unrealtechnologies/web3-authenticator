@@ -1,0 +1,28 @@
+apply plugin: "java"
+
+repositories {
+    mavenCentral()
+}
+
+configurations {
+    ktlint
+}
+
+dependencies {
+    ktlint "com.pinterest:ktlint:0.47.1"
+}
+
+task checkStyle(type: JavaExec, group: "ktlint") {
+    description = "Check Kotlin code style."
+    classpath = configurations.ktlint
+    mainClass = "com.pinterest.ktlint.Main"
+    args "src/**/*.kt", "!**/buildSrc/**"
+}
+
+task fixStyle(type: JavaExec, group: "ktlint") {
+    description = "Fix Kotlin code style deviations."
+    classpath = configurations.ktlint
+    mainClass = "com.pinterest.ktlint.Main"
+    args "-F", "src/**/*.kt", "!**/buildSrc/**"
+    jvmArgs "--add-opens=java.base/java.lang=ALL-UNNAMED"
+}

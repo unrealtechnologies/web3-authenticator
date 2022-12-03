@@ -63,4 +63,4 @@ data class BlockInformation(
 
     @JsonProperty("uncles")
     val uncles: List<String>
-): InfuraResult()
+) : InfuraResult()

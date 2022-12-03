@@ -7,5 +7,5 @@ import org.springframework.boot.runApplication
 class Web3AuthenticatorApplication
 
 fun main(args: Array<String>) {
-	runApplication<Web3AuthenticatorApplication>(*args)
+    runApplication<Web3AuthenticatorApplication>(*args)
 }

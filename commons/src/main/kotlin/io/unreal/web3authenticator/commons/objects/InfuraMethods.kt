@@ -1,6 +1,5 @@
 package io.unreal.web3authenticator.commons.objects
 
-import io.unreal.web3authenticator.commons.objects.BlockHash
 import kotlin.reflect.KClass
 
 // Using a tripple here to represent function name, ID, and class

@@ -5,13 +5,14 @@ import com.fasterxml.jackson.databind.DeserializationContext
 import com.fasterxml.jackson.databind.JavaType
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer
 import com.fasterxml.jackson.databind.node.ObjectNode
-import io.unreal.web3authenticator.commons.objects.InfuraResponseBody
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import io.unreal.web3authenticator.commons.objects.InfuraMethods
-import kotlin.reflect.*
+import io.unreal.web3authenticator.commons.objects.InfuraResponseBody
+import kotlin.reflect.KParameter
 import kotlin.reflect.full.primaryConstructor
+import kotlin.reflect.javaType
 
-class InfuraResponseDeserializer: StdDeserializer<InfuraResponseBody>(InfuraResponseBody::class.java) {
+class InfuraResponseDeserializer : StdDeserializer<InfuraResponseBody>(InfuraResponseBody::class.java) {
 
     @OptIn(ExperimentalStdlibApi::class)
     fun getJavaType(ctxt: DeserializationContext, param: KParameter, id: String, jsonKey: String): JavaType {
@@ -40,7 +41,7 @@ class InfuraResponseDeserializer: StdDeserializer<InfuraResponseBody>(InfuraResp
         val tree = jsonParser.readValueAsTree<ObjectNode>()
         val args = mutableMapOf<KParameter, Any?>()
 
-        for (param : KParameter in constructor.parameters) {
+        for (param: KParameter in constructor.parameters) {
             val property = properties.stream()
                 .filter { item -> item.internalName.equals(param.name) }.findFirst()
 
