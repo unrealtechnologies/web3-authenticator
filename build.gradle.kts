@@ -9,18 +9,17 @@ allprojects {
     group = "io.unreal.web3authenticator"
     version = "0.0.1-SNAPSHOT"
 
+    apply(plugin = "java")
     apply(plugin = "org.jetbrains.kotlin.jvm")
 
     repositories {
         mavenCentral()
         maven { url = uri("https://repo.spring.io/milestone") }
         maven { url = uri("https://repo.spring.io/snapshot") }
-        maven { url = uri("https://oss.sonatype.org/content/repositories/snapshots") }
     }
 
     dependencies {
         implementation("com.pinterest:ktlint:0.47.1")
-        // implementation("com.pinterest:ktlint:<latest-version>-kotlin-dev-SNAPSHOT")
     }
 
 }
